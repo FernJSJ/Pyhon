@@ -1,4 +1,14 @@
 # 本机配置
+# git操作
+git add .
+git commit -m "jupyter notebook"
+git push origin
+
+# 安装R语言
+sudo pacman -S base-devel 
+yaourt -S microsoft-r-open
+yaourt -S gcc-fortran
+sudo pacman -S rstudio-desktop-bin
 
 # 别名fuck
 eval "$(thefuck --alias fuck)"
