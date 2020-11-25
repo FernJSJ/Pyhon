@@ -816,6 +816,11 @@ docker run [可选参数] image
 
 # 启动并进入容器
 docker run -it centos /bin/bash 
+	eg: docker run -it --rm ubuntu:16.04 bash
+	-it：这是两个参数，一个是 -i 表示交互式操作，一个是 -t 为终端
+	--rm：这个参数是说容器退出后随之将其删除
+	ubuntu:16.04：这是指用 ubuntu:16.04 镜像为基础来启动容器
+	bash：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用 bash
 ls  #查看容器内centOS目录
 exit #从容器内退出
 
@@ -869,11 +874,77 @@ docker cp a47842fa991f:/home/Test.java /home
 cd home
 ls
 	
-	
-	
-	
-	
-	
-	
-	
+# docker镜像加速
+sudo gedit /etc/docker/daemon.json
+加入
+{
+  "registry-mirrors": [
+    "https://registry.docker-cn.com",
+    "http://hub-mirror.c.163.com",
+    "https://docker.mirrors.ustc.edu.cn"
+  ]
+}	
+重启docker服务	
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+查看 docker info
+# 如果查看到如下 registry mirrors 信息则表示修改生效
+Registry Mirrors:
+ https://registry.docker-cn.com/
+
+ 
+docker run --name fern_centos -it centos /bin/bash # 命名fern_centos的交互式容器
+docker start fern_centos # 重启停止的容器
+docker ps # 查看容器是否运行
+docker attach fern_centos # 附着到容器上
+docker kill fern_centos # 强行停止
+
+
+docker logs fern_centos # 查看日志
+docker inspect fern_centos # 查看更多信息,包括名称\命令\网络配置
+docker rm ID # 50a107450915 fern_centos的ID 
+docker search centos # 查找可用镜像
+
+docker login # 登录 
+# Docker搭建CentOS系统，并配置ssh环境
+https://blog.csdn.net/qq_21429153/article/details/80867813
+docker exec -it centos_1 bash
+
+yum -y update #升级所有包同时也升级软件和系统内核
+yum -y upgrade #只升级所有包，不升级软件和系统内核
+yum -y install vim #安装vim
+yum -y install initscripts #安装基本工具包，如service、ip等命令
+yum -y install passwd #安装passwd
+passwd root #修改系统root密码
+yum -y install openssl #安装openssl
+yum -y install openssh-clients #安装ssh客户端
+yum -y install openssh-server #安装sshd服务
+ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N “” #配置ssh key值
+ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N “” #配置ssh key值
+ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N “” #配置ssh key值
+/usr/sbin/sshd -D & #后台运行sshd服务
+ps -e | grep sshd #查看sshd服务是否开启，存在sshd进程，则说明已经开启sshd
+systemctl start sshd.service # 启动sshd服务
+systemctl status sshd.service # 查看sshd服务的状态
+systemctl enable sshd.service # 设置sshd服务开机自启
+systemctl disable sshd.service # 设置sshd服务开机不自启
+systemctl list-unit-files | grep sshd # 查看sshd状态
+ip addr #查看本机IP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

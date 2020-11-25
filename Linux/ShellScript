@@ -1,0 +1,165 @@
+# !/bin/zsh
+# An example of using the expr command
+var1=10
+var2=20
+var3=$(expr $var2 / $var1)
+echo The result is $var3
+
+# 数学运算
+var1=$[1 + 5]
+echo $var1
+var2=$[$var1 * 2]
+echo $var2
+var1=100
+var2=50
+var3=45
+var4=$[$var1 * ($var2 - $var3)]
+echo The final result is $var4
+
+# 脚本使用bush计算器
+var1=10.46
+var2=43.67
+var3=33.2
+var4=71
+var5=$(bc << EOF
+scale = 4
+a1 = ( $var1 * $var2)
+b1 = ($var3 * $var4)
+a1 + b1
+EOF
+)
+echo The final answer for this mess is $var5
+
+# testing the if statement
+if pwd
+then
+	echo "It worked"
+fi
+
+# testing a bad command
+if IamNotaCommand
+then
+	echo "It worked"
+fi
+echo "We are outside the if statement"
+
+
+# testing multiple commands in the then section
+#
+testuser=fern
+#
+if grep $testuser /etc/passwd
+then
+	echo "This is my first command"
+	echo "This is my second command"
+	echo "I can even put in other commands besides echo:"
+	ls -a /home/$testuser/.b*
+fi
+
+# testing the else section
+#
+testuser=NoSuchUser
+#
+if grep $testuser /etc/passwd
+then
+	echo "The bash files for user $testuser are:"
+	ls -a /home/$testuser/.b*
+	echo
+else
+	echo "The user $testuser does not exist on this system."
+	echo
+fi
+
+# Testing nested ifs
+#
+testuser=NoSuchUser
+#
+if grep $testuser /etc/passwd
+then
+	echo "The user $testuser exists on this system."
+else
+	echo "The user $testuser does not exist on this system."
+	if ls -d /home/$testuser/
+	then
+		echo "However, $testuser has a directory."
+	fi
+fi
+
+# Testing nested ifs - use elif
+#
+testuser=NoSuchUser
+#
+if grep $testuser /etc/passwd
+then
+	echo "The user $testuser exists on this system."
+#
+elif ls -d /home/$testuser
+then
+	echo "The user $testuser does not exist on this system."
+	echo "However, $testuser has a directory."
+#
+fi
+
+# Testing nested ifs - use elif & else
+#
+testuser=NoSuchUser
+#
+if grep $testuser /etc/passwd
+then
+	echo "The user $testuser exists on this system."
+#
+elif ls -d /home/$testuser
+then
+	echo "The user $testuser does not exist on this system."
+	echo "However, $testuser has a directory."
+#
+else
+	echo "The user $testuser does not exist on this system."
+	echo "And, $testuser does not have a directory."
+fi
+
+# Testing the test command
+#
+my_variable="Full"
+#
+if test $my_variable
+then
+	echo "The $my_variable expression returns a True"
+#
+else
+	echo "The $my_variable expression returns a False"
+fi
+
+# Using numeric test evaluations
+#
+value1=10
+value2=11
+#
+if [ $value1 -gt 5 ]
+then
+	echo "The test value $value1 is greater than 5"
+fi
+#
+if [ $value1 -eq $value2 ]
+then
+	echo "The values are equal"
+else
+	echo "The values are different"
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
