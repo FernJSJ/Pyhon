@@ -1,0 +1,879 @@
+# 本机配置
+
+# 别名fuck
+eval "$(thefuck --alias fuck)"
+# 更新thefuck
+sudo pip3 install thefuck --upgrade
+
+# bash .sh 安装
+# miniconda路径
+export PATH=/home/fern/miniconda3/bin:$PATH
+# 主题设置
+ZSH_THEME="ys"
+# 插件设置
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+
+# 编辑
+sudo gedit ~/.zshrc
+source ~/.zshrc
+
+mkdir ~/.pip # 创建目录
+cd ~/.pip # 切换目录
+touch pip.conf # 创建pip.conf文件
+sudo gedit ~/.pip/pip.conf # 编辑
+# 添加pip源
+[global] 
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host = https://pypi.tuna.tsinghua.edu.cn # trusted-host 此参数是为了避免麻烦，否则使用的时候可能会提示不受信任
+
+#切换默认shell chsh -s /bin/zsh
+# 复制配置文件 cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+# 复制incr*.zsh文件到plugins cp incr-0.2.zsh .oh-my-zsh/plugins/
+# 在.zshrc 文件末尾添加 source ~/.oh-my-zsh/plugins/incr*.zsh
+
+# 查看当前shell
+echo $SHELL
+
+# 查看所有shell
+cat /etc/shells 
+
+# 图形、命令
+Ctrl+Alt+F1 图形界面
+Ctrl+Alt+F6 命令界面
+
+tty6 
+	6虚拟控制台6
+	tty：电传打印机（teletypewriter）：一台用于发送消息的机器
+	login：输入用户id
+	Password：输入密码
+	虚拟控制台无法运行任何图形化程序
+	
+# 复制/粘帖
+Shift+Ctrl+C/V
+
+# 简体/繁体
+Ctrl+Shift+F
+
+# 打开 cat
+/etc/passwd 所有系统用户账户列表以及每个用户的基本配置信息
+
+# 访问手册 man eg：man zsh q：退出
+man man 查看与手册页相关的手册页
+man -k 关键字搜索手册页 eg：man -k terminal
+info info了解info
+--help
+
+# oh my zsh
+命令语法亮度插件zsh-syntax-highlighting
+历史记录建议插件 zsh-autosuggestions
+自动跳转目录 z autojump（需安装）
+
+# 显示当前目录
+pwd
+
+# 复制文件 
+cp -i强制shell询问是否需要覆盖已有文件
+/home/fern/Documents/（绝对路径） 目标目录加/表明为目录 Documents/（相对路径）
+.单点表当前工作目录 ..表父目录
+cp -R 递归复制整个目录
+tab 自动补全
+
+# 移动文件
+mv 移动文件并修改文件名称
+
+# 删除文件
+rm -i 提示是否删除文件
+rm -f 强制删除
+
+# 创建目录
+mkdir
+mkdir -p 同时创建多个目录和子目录
+
+# 删除目录
+rmdir 删除空目录
+rm -r 进入目录,删除其中文件,再删除目录本身
+rm -rf 无警告无声音提示删除
+
+# 查看文件类型
+file 探测文件内部,能确定文件的文本信息和字符编码
+# 查看文件 
+cat -n 所有行加上行号
+cat -b 文本行加上行号
+cat -T 不出现制表符,用^I字符组合替换文中所有制表符
+# cat一旦运行无法控制后面的操作
+
+more 显示文本内容,但在显示每页数据之后停下来
+# more仅支持文本文件中的基本移动
+
+less 一次显示一页的文本,功能比more多,见man less
+
+tail 显示文件最后10行内容
+tail -n 修改显示行数
+tail -f 在其他进程使用该文件时查看文件内容,tail保持活动状态,并不断先显示添加到文件的内容,如实时检测系统日志
+
+head 显示开头10行内容
+
+
+# 探查进程
+ps 显示当前运行进程
+ps -ef -e显示所有进程 -f显示完整信息
+	UID：启动这些进程的用户
+	PID：进程的进程ID
+	PPID：父进程的进程号（如果该进程是由另一个进程启动的）
+	C：进程生命周期中的CPU利用率
+	STIME：进程启动时的系统时间
+	TTY：进程启动时的终端设备
+	TIME：运行进程需要的累计CPU时间
+	CMD：启动的程序名称
+ps -l更多信息
+	F ：内核分配给进程的系统标记
+	S ：进程的状态（O代表正在运行；S代表在休眠；R代表可运行，正等待运行；Z代表僵
+化，进程已结束但父进程已不存在；T代表停止）。
+	PRI ：进程的优先级（越大的数字代表越低的优先级）。
+	NI ：谦让度值用来参与决定优先级。
+	ADDR ：进程的内存地址。
+	SZ ：假如进程被换出，所需交换空间的大致大小。
+	WCHAN ：进程休眠的内核函数的地址。
+ps --forest 显示进程层次信息
+# ps只能显示特定时间点的信息
+
+top 实时显示进程信息 
+	load average(系统负载值)超过2,表明系统较繁忙
+	PID：进程的ID。
+	USER：进程属主的名字。
+	PR：进程的优先级。
+	NI：进程的谦让度值。
+	VIRT：进程占用的虚拟内存总量。
+	RES：进程占用的物理内存总量。
+	SHR：进程和其他进程共享的内存总量。
+	S：进程的状态（D代表可中断的休眠状态，R代表在运行状态，S代表休眠状态，T代表
+	跟踪状态或停止状态，Z代表僵化状态）。
+	%CPU：进程使用的CPU时间比例。
+	%MEM：进程使用的内存占可用内存的比例
+	TIME+：自进程启动到目前为止的CPU时间总量
+	COMMAND：进程所对应的命令行名称，也就是启动的程序名
+
+# 结束进程
+kill 通过PID给进程发TERM信号,但需是进程属主或root用户
+kill -s 指定其他信号(信息号或信息值)
+# 用ps或top检查进程是否停止
+
+killall 通过进程名结束进程
+
+# 监测磁盘
+mount 输出当前挂载的设备
+umount 卸载设备
+df 查看所有已挂载磁盘的使用情况
+df -h 磁盘空间按易读形式显示
+du 显示特定目录(默认为当前目录)的磁盘使用情况
+du -c 显示所有以列出文件总的大小
+du -h 按易读形式
+du -s 显示输出参数的总和
+
+# 处理数据文件
+# 排序数据
+sort 对数据进行排序
+sort -n 数字识别为数字而不是字符,并按值排序
+sort -M 按月排序(识别三字符的月份)
+sort -t 指定字段分隔符 -k 制定排序字段
+sort -r 降序
+
+# 搜索数据
+grep [options] pattern [file]
+grep -v 反向搜索
+grep -n 显示匹配模式的行所在的行号
+grep -c 共多少行含匹配模式
+grep -e 指定多个匹配模式
+
+# 压缩数据
+gzip 压缩文件
+gzcat 查看压缩过的文本文件内容
+gunzip 解压文件
+
+# 归档数据
+tar function [options] object1 object2
+
+# shell
+exit 退出
+echo $BASH_SUBSHELL 检查是否在子shell运行,0不是,1是创建了子shell并用于执行命令
+
+sleep 10 进程等待(睡眠)10s
+sleep 10& 置入后台模式
+jobs 显示当前运行在后台模式中所有用户的进程
+jobs -l 查看相关信息
+
+coproc  sleep 10 协程,在后台生成一个子shell.并在子shell中执行命令
+
+# 外部命令
+存在于shell之外的程序,并不是shell的一部分,常位于/bin、/usr/bin、/sbin或/usr/sbin中
+which 只显示外部命令
+type -a 显示每个命令的实现
+外部程序执行时会创建一个子进程
+
+# 内建命令
+区别在于不使用子进程执行,更快,效率更高
+使用外部命令pwd,可输入/bin/pwd
+
+history 查看最近使用的命令
+!! 再回车唤出刚使用的命令
+history -a 退出shell前将命令记录写入
+history -n 更新终端会话历史记录
+!! 20 唤回历史列表中编号为30的命令
+
+# 别名
+alias 查看当前可用的别名
+
+# 环境变量
+env 查看全局变量
+printenv HOME 显示HOME的环境变量的值
+echo $HOME 显示HOME变量,并让变量作为命令行参数
+
+局部变量仅在定义它们的进程中可见
+set 显示特定进程设置的所以环境变量,包括局部变量、全局变量及用户定义变量,并按字母顺序排序
+# 环境变量使用大写字母,自己创建的局部变量或shell脚本请使用小写字母
+变量名、等号和值间没有空格，否则shell会将值当作单独的命令
+
+设置全局变量
+export 将局部变量变为全局变量
+unset 删除环境变量
+# 用到变量使用$,操作变量,不使用$,例外是使用printenv显示某个变量的值
+
+# 用户
+useradd 添加用户
+userdel 删除用户 -r 删除用户所有文件
+usermod -L 锁定用户 -U 解除锁定 -p 修改账户密码 -l 修改登录名
+passwd 改变用户密码 -e 强制用户下次登录时修改密码
+chpasswd 批量修改密码
+chsh 快速修改默认用户登录shell,以shell全路径作为参数
+chfn 在etc/passwd文件的备注字段中存储信息
+	finger 查看用户信息 Ubuntu
+chage 管理用户账户的有效期 -E 设置密码过期的日期
+
+groupadd 创建新组
+usermod -G 将新组添加到该用户账户的组列表
+groupmod -g 修改已有组的GID -n 选项
+
+ls -l 查看目录权限 r 可读 w 可写 x 可执行
+umask 设置所创建文件和目录的默认权限
+chmod 改变文件和目录的安全性设置 chmode options mode file
+chown 改变文件的属主
+chgrp 改变文件的默认属主
+
+
+# 操作文件系统
+fdishk 管理分区需要root
+fsck 检查和修复文件 fsck options filesystem -a 检测错误自动修复 -r 出现错误时提示
+
+# shell学习
+# Vim
+h 左移一个字符 
+j 下移一行 
+k 上移一行 
+l 右移一个字符
+PagDown(Ctrl+F) 下翻一屏 
+PageUp(Ctrl+B) 上翻一屏 
+G 移到缓冲区最后一行 
+num G 移动到n行 
+gg 移动到缓冲区的第一行
+
+i 插入
+ESC 退出插入模式回到普通模式
+:q 未修改,退出
+:q! 取消修改并退出
+:w filename 将文件保存到另一个文件中
+:wq 保存并退出
+
+普通模式下
+x  删除当前光标所在位置的字符
+dd 删除当前光标所在行
+dw 删除当前光标所在位置的单词
+d$ 删除当前光标所在位置至行尾的内容
+J  删除当前光标所在行行尾的转行符(拼接行)
+u  撤销前一编辑命令
+a  在当前光标后追加数据
+A  在当前光标所在行行为追加数据
+r char 用char替换当前光标所在位置的单个字符
+R text 用text覆盖当前光标所在位置的数据,直到按下ESC
+
+eg:
+2x  删除从当前光标位置开始的两个字符
+5dd 删除从当前光标所在行开始的5行
+# Vim普通模式下不识别退格符(Backspace),通常将删除键(Delete)识别为x命令,删除当前光标所在位置的字符
+
+剪切 dd 删除一行文本 p 取回数据,插入到当前光标所在行
+y 复制 yw 复制一个单词 y$ 复制到行尾 p
+	可视模式 v  y激活复制命令 p
+查找 / 输入文本,回车 n 下一个
+替换 :s/old/new/
+	:s/old/new/g ：一行命令替换所有 old 
+	:n,ms/old/new/g ：替换行号 n 和 m 之间所有 old 
+	:%s/old/new/g ：替换整个文件中的所有 old 
+	:%s/old/new/gc ：替换整个文件中的所有 old ，但在每次出现时提示
+
+# shell脚本编程
+date 显示时间
+who
+
+Script
+# !/bin/zsh # 确定shell
+# This script displays the date and who's logged on # 注释
+date # 命令
+who
+
+ls -l 文件 # 查看文件
+chomd u+x 文件 # 修改文件权限
+./文件 # 执行
+echo This is a test # 显示文本
+echo "This is a test to see if you're paying attention" # 文字用到引号则用另一种引号
+echo -n "This time and date are:" # 将文本和命令输出显示在同一行
+
+$ 环境变量 # 使用环境变量
+cat # 读取文件
+\$15 # 显示美元符号
+
+` # 将shell命令输出赋给变量 testing=`date`
+	$() testing=$(date)
+
+# copy the /usr/bin directory listing to a log file
+today=$(date +%y%m%d) # 格式化的date命令的输出 日期为两位数的年月日组合
+ls /usr/bin -al > log.$today
+
+# 重定向输入和输出
+command > outputfile # 命令输出保存到指定的输出文件中,如果输出文件已经存在了，重定向操作符会用新的文件数据覆盖已有文件
+command >> outputfile # 不覆盖
+
+command < inputfile # 将文件内容重定到命令
+wc # 对数据中文本进行计数,默认输出文本行数、词数、字节数
+command << marker # 指定一个文本标记来划分输入数据的开始和结尾,任何字符串都可为文本标记,但数据开始和结尾文本标记必须一致
+
+command | command # 管道,将一个命令的输出作为另一个命令的输入,同时运行两条命令,在系统内部将它们连接起来,在第一个命令产生输出的同时,输出立即送给第二个命令
+	less/more 用文本分页命令来强行将输出按屏显示
+	配置重定向和管道来将输出保存到文件中
+	ls命令用管道(|)传到more
+	
+# 数学运算
+expr # 处理数学表达式 expr 5 \* 2
+$[ operation ] # 数学运算结果赋给变量,bush shell数学运算符只支持整数运算
+
+bc #访问bash计算器 
+	scale=4 保留的小数位 
+	-q 不显示计算器冗长的欢迎消息 
+	支持变量,变量定义后可在bash计算器中使用
+	print 打印变量和数字
+	quit # 退出
+	脚本中使用 variable=$(echo "options; expression" | bc) eg:var1=$(echo "scale=4; 3.44 / 5" | bc)
+	
+# 退出脚本
+$? #保存上个已执行命令的退出状态码,运行完立刻检查,成功退出为0,命令结束状态错误则退出码为正数,无效命令为127
+	0 命令成功结束
+	1 一般性未知错误
+	2 不适合的shell命令
+	126 命令不可执行(用户没有执行命令的权限)
+	127 没找到命令
+	128 无效的退出参数
+	128+x 与Linux信号x相关的严重错误
+	130 通过Ctrl+C终止的命令
+	255 正常范围之外的退出状态码
+	
+# 结构化命令
+if-then 该命令的退出状态码(参见第11章)是0(该命令成功运行),位于then部分的命令就会被执行,如果该命令的退出状态码是其他值,then命令不执行
+	if command
+	then
+		command
+	fi
+
+if-then-else 命令返回非零退出状态码,执行另一组命令
+	if command
+	the
+		command
+	else
+		command
+	fi
+	
+嵌套if-then检查脚本代码的多种条件,嵌套的if-then语句位于主if-then-else语句的else代码块中elif 用另一个if-then延续else
+	if command1
+	then
+		commands
+	elif command2
+	then
+		more commands
+	fi
+# 在elif语句中，紧跟其后的else语句属于elif代码块。它们并不属于之前的if-then代码块
+
+if command1
+then
+	command set 1
+elif command2
+then
+	command set 2
+elif command3
+then
+	command set 3
+elif command4
+then
+	command set 4
+fi
+# 每块命令都会根据命令是否会返回退出状态码0来执行。记住，bash shell会依次执行if语句，只有第一个返回退出状态码0的语句中的then部分会被执行
+
+test  test命令中列出的条件成立，test命令就会退出并返回退出状态码0,如果条件不成立，test命令就会退出并返回非零的退出状态码,if-then不执行
+	if test condition
+	then
+		commands
+	fi
+	# 如果不写test命令的condition部分，它会以非零的退出状态码退出，并执行else语句块
+	if [ condition ]
+	then
+		commands
+	fi
+
+test命令可判断数值比较 字符串比较 文件比较
+数字比较 
+	n1 -eq n2 检查 n1 是否与 n2 相等
+	n1 -ge n2 检查 n1 是否大于或等于 n2
+	n1 -gt n2 检查 n1 是否大于 n2
+	n1 -le n2 检查 n1 是否小于或等于 n2
+	n1 -lt n2 检查 n1 是否小于 n2
+	n1 -ne n2 检查 n1 是否不等于 n2
+	# 不可使用浮点指,bash shell只能处理整数
+
+字符串比较
+	str1 = str2 检查 str1 是否和 str2 相同
+	str1 != str2 检查 str1 是否和 str2 不同
+	str1 < str2 检查 str1 是否比 str2 小
+	str1 > str2 检查 str1 是否比 str2 大
+	-n str1 检查 str1 的长度是否非0
+	-z str1 检查 str1 的长度是否为0
+	# 在比较字符串的相等性时，比较测试会将所有的标点和大小写情况都考虑在内
+	# >可能被认为重定向,应改为/>
+	# sort处理大写字母与test相反,test认为大写字母小于小写字母,sort排序时小写字母先出现
+	#test使用标准ASCII数值决定排序结果,sort使用系统本地化语言设置定义的排序,对于英语本地化设置指定了排序小写字母出现在大写字母前
+	# test命令和测试表达式使用标准的数学比较符号来表示字符串比较，而用文本代码来表示数值比较,对数值使用了数学运算符号，shell会将它们当成字符串值，可能无法得到正确的结果
+
+字符串大小比较
+	-n -z 检查变量中是否含有数据
+	# 空的和未初始化的变量会对shell脚本测试造成灾难性的影响。如果不是很确定一个变量的内容，最好在将其用于数值或字符串比较之前先通过-n或-z来测试一下变量是否含有值
+
+文件比较
+	-d file 检查 file 是否存在并是一个目录
+	-e file 检查 file 是否存在
+	-f file 检查 file 是否存在并是一个文件
+	-r file 检查 file 是否存在并可读
+	-s file 检查 file 是否存在并非空
+	-w file 检查 file 是否存在并可写
+	-x file 检查 file 是否存在并可执行
+	-O file 检查 file 是否存在并属当前用户所有
+	-G file 检查 file 是否存在并且默认组与当前用户相同
+	file1 -nt file2 检查 file1 是否比 file2 新
+	file1 -ot file2 检查 file1 是否比 file2 旧
+	
+# 复合条件测试
+if-then 语句允许你使用布尔逻辑来组合测试
+	[ condition1 ] && [ condition2 ] # and
+	[ condition1 ] || [ condition2 ] # or
+
+# if-then高级特性
+(( expression )) 用于数学表达式的双括号
+	val++ 后增
+	val-- 后减
+	++val 先增
+	--val 先减
+	! 逻辑求反
+	~ 位求反
+	** 幂运算
+	<< 左位移
+	>> 右位移
+	& 位布尔和
+	| 位布尔或
+	&& 逻辑和
+	|| 逻辑或
+
+[[ expression ]]用于高级字符串处理功能的双方括号
+	双方括号里的expression使用了test命令中采用的标准字符串比较,但提供模式匹配
+	[[ $USER == r* ]] ==双等号将右边的字符串（r*）视为一个模式，并应用模式匹配规则
+		双方括号命令$USER环境变量进行匹配，看它是否以字母r开头,是则执行then
+		
+# case命令
+采用列表格式来检查单个变量的多个值
+	case variable in
+	pattern1 | pattern2 ) commands1 ;;
+	pattern3 ) commands2 ;;
+	*) default commands ;;
+	esac
+	# 竖线操作符在一行中分隔出多个模式模式。星号会捕获所有与已知模式不匹配的值
+	
+# for命令
+允许你创建一个遍历一系列值的循环。每次迭代都使用其中一个值来执行已定义好的一组命令
+	for var in list
+	do
+		commands
+	done
+# 第十三章停止
+
+# 处理用户输入
+$0 是程序名，$1是第一个参数，$2是第二个参数，依次类推，直到第九个参数$9,${10}
+basename 返回不含路径的脚本名
+	
+	
+# 附录
+内建命令
+: 扩展参数列表，执行重定向操作
+. 读取并执行指定文件中的命令（在当前shell环境中）
+alias 为指定命令定义一个别名
+bg 将作业以后台模式运行
+bind 将键盘序列绑定到一个 readline 函数或宏
+break 退出 for 、 while 、 select 或 until 循环
+builtin 执行指定的shell内建命令
+caller 返回活动子函数调用的上下文
+cd 将当前目录切换为指定的目录
+command 执行指定的命令，无需进行通常的shell查找
+compgen 为指定单词生成可能的补全匹配
+complete 显示指定的单词是如何补全的
+compopt 修改指定单词的补全选项
+continue 继续执行 for 、 while 、 select 或 until 循环的下一次迭代
+declare 声明一个变量或变量类型。
+dirs 显示当前存储目录的列表
+disown 从进程作业表中删除指定的作业
+echo 将指定字符串输出到 STDOUT
+enable 启用或禁用指定的内建shell命令
+eval 将指定的参数拼接成一个命令，然后执行该命令
+exec 用指定命令替换shell进程
+exit 强制shell以指定的退出状态码退出
+export 设置子shell进程可用的变量
+fc 从历史记录中选择命令列表
+fg 将作业以前台模式运行
+getopts 分析指定的位置参数
+hash 查找并记住指定命令的全路径名
+help 显示帮助文件
+history 显示命令历史记录
+jobs 列出活动作业
+kill 向指定的进程ID（PID）发送一个系统信号
+let 计算一个数学表达式中的每个参数
+local 在函数中创建一个作用域受限的变量
+logout 退出登录shell
+mapfile 从 STDIN 读取数据行，并将其加入索引数组
+popd 从目录栈中删除记录
+printf 使用格式化字符串显示文本
+pushd 向目录栈添加一个目录
+pwd 显示当前工作目录的路径名
+read 从 STDIN 读取一行数据并将其赋给一个变量
+readarray 从 STDIN 读取数据行并将其放入索引数组
+readonly 从 STDIN 读取一行数据并将其赋给一个不可修改的变量
+return 强制函数以某个值退出，这个值可以被调用脚本提取
+set 设置并显示环境变量的值和shell属性
+shift 将位置参数依次向下降一个位置
+shopt 打开/关闭控制shell可选行为的变量值
+source 读取并执行指定文件中的命令（在当前shell环境中）
+suspend 暂停shell的执行，直到收到一个 SIGCONT 信号
+test 基于指定条件返回退出状态码 0 或 1
+times 显示累计的用户和系统时间
+trap 如果收到了指定的系统信号，执行指定的命令
+type 显示指定的单词如果作为命令将会如何被解释
+typeset 声明一个变量或变量类型。
+ulimit 为系统用户设置指定的资源的上限
+umask 为新建的文件和目录设置默认权限
+unalias 删除指定的别名
+unset 删除指定的环境变量或shell属性
+wait 等待指定的进程完成，并返回退出状态码
+
+
+常见hash命令
+bzip2 采用Burrows-Wheeler块排序文本压缩算法和霍夫曼编码进行压缩
+cat 列出指定文件的内容
+chage 修改指定系统用户账户的密码过期日期
+chfn 修改指定用户账户的备注信息
+chgrp 修改指定文件或目录的默认属组
+chmod 为指定文件或目录修改系统安全权限
+chown 修改指定文件或目录的默认属主
+chpasswd 读取一个包含登录名/密码的文件并更新密码
+chsh 修改指定用户账户的默认shell
+clear 从终端仿真器或虚拟控制台终端删除文本
+compress 最初的Unix文件压缩工具
+coproc 在后台模式中生成子shell，并执行指定的命令
+cp 将指定文件复制到另一个位置
+crontab 初始化用户的crontable文件对应的编辑器（如果允许的话）
+cut 删除文件行中指定的位置
+date 以各种格式显示日期
+df 显示所有挂载设备的当前磁盘空间使用情况
+du 显示指定文件路径的磁盘使用情况
+emacs 调用emacs文本编辑器
+file 查看指定文件的文件类型
+find 对文件进行递归查找
+free 查看系统上可用的和已用的内存
+gawk 使用编程语言命令的流编辑器
+grep 在文件中查找指定的文本字符串
+gedit 调用GNOME桌面编辑器
+getopt 解析命令选项（包括长格式选项）
+groups 显示指定用户的组成员关系
+groupadd 创建新的系统组
+groupmod 修改已有的系统组
+gzip 采用Lempel-Ziv编码的GNU项目压缩工具
+head 显示指定文件内容的开头部分
+help 显示bash内建命令的帮助页面
+killall 根据进程名向运行中的进程发送一个系统信号
+kwrite 调用KWrite文本编辑器
+less 查看文件内容的高级方法
+link 用别名创建一个指向文件的链接
+ln 创建针对指定文件的符号链接或硬链接
+ls 列出目录内容
+makewhatis 创建能够使用手册页关键字进行搜索的whatis数据库
+man 显示指定命令或话题的手册页
+mkdir 在当前目录下创建指定目录
+more 列出指定文件的内容，在每屏数据后暂停下来
+mount 显示虚拟文件系统上挂载的磁盘设备或将磁盘设备挂载到虚拟文件系统上
+mv 重命名文件
+nano 调用nano文本编辑器
+nice 在系统上使用不同优先级来运行命令
+passwd 修改某个系统用户账户的密码
+ps 显示系统上运行中进程的信息
+pwd 显示当前目录
+renice 修改系统上运行中应用的优先级
+rm 删除指定文件
+rmdir 删除指定目录
+sed 使用编辑器命令的文本流行编辑器
+sleep 在指定的一段时间内暂停bash shell操作
+sort 基于指定的顺序组织数据文件中的数据
+stat 显示指定文件的文件统计数据
+sudo 以root用户账户身份运行应用
+tail 显示指定文件内容的末尾部分
+tar 将数据和目录归档到单个文件中
+top 显示活动进程以及其他重要的系统统计数据
+touch 新建一个空文件，或更新一个已有文件的时间戳
+umount 从虚拟文件系统上删除一个已挂载的磁盘设备
+uptime 显示系统已经运行了多久
+useradd 新建一个系统用户账户
+userdel 删除已有系统用户账户
+usermod 修改已有系统用户账户
+vi 调用vim文本编辑器
+vmstat 生成一个详尽的系统内存和CPU使用情况报告
+whereis 显示指定命令的相关文件，包括二进制文件、源代码文件以及手册页
+which 查找可执行文件的位置
+who 显示当前系统中的登录用户
+whoami 显示当前用户的用户名
+xargs 从 STDIN 中获取数据项，构建并执行命令
+zip Windows下PKZIP程序的Unix版本
+
+环境变量
+* 含有所有命令行参数（以单个文本值的形式）
+@ 含有所有命令行参数（以多个文本值的形式）
+# 命令行参数数目
+? 最近使用的前台进程的退出状态码
+- 当前命令行选项标记
+$ 当前shell的进程ID（PID）
+! 最近执行的后台进程的PID
+0 命令行中使用的命令名称
+_ shell的绝对路径名
+BASH 用来调用shell的完整文件名
+BASHOPTS 允许冒号分隔列表形式的shell选项
+BASHPID 当前bash shell的进程ID
+BASH_ALIASED 含有当前所用别名的数组
+BASH_ARGC 当前子函数中的参数数量
+BASH_ARGV 含有所有指定命令行参数的数组
+BASH_CMDS 含有命令的内部散列表的数组
+BASH_COMMAND 当前正在被执行的命令名
+BASH_ENV 如果设置了的话，每个bash脚本都会尝试在运行前执行由该变量定义的起始文件
+BASH_EXECUTION_STRING 在 -c 命令行选项中用到的命令
+BASH_LINENO 含有脚本中每个命令的行号的数组
+BASH_REMATCH 含有与指定的正则表达式匹配的文本元素的数组
+BASH_SOURCE 含有shell中已声明函数所在源文件名的数组
+BASH_SUBSHELL 当前shell生成的子shell数目
+BASH_VERSINFO 含有当前bash shell实例的主版本号和次版本号的数组
+BASH_VERSION 当前bash shell实例的版本号
+BASH_XTRACEFD 当设置一个有效的文件描述符整数时，跟踪输出生成，并与诊断和错误信息分离开文件描述符必须设置 -x 启动
+COLUMNS 含有当前bash shell实例使用的终端的宽度
+COMP_CWORD 含有变量 COMP_WORDS 的索引值， COMP_WORDS 包含当前光标所在的位置
+COMP_KEY 调用补全功能的按键
+COMP_LINE 当前命令行
+COMP_POINT 当前光标位置相对于当前命令起始位置的索引
+COMP_TYPE 补全类型所对应的整数值
+COMP_WORDBREAKS 在进行单词补全时用作单词分隔符的一组字符
+COMP_WORDS 含有当前命令行上所有单词的数组
+COMPREPLY 含有由shell函数生成的可能补全码的数组
+COPROC 含有用于匿名协程I/O的文件描述符的数组
+DIRSTACK 含有目录栈当前内容的数组
+EMACS 如果设置了该环境变量，则shell认为其使用的是emacs shell缓冲区，同时禁止行编辑功能
+ENV 当shell以POSIX模式调用时，每个bash脚本在运行之前都会执行由该环境变量所定义的起始文件
+EUID 当前用户的有效用户ID（数字形式）
+FCEDIT fc 命令使用的默认编辑器
+FIGNORE 以冒号分隔的后缀名列表，在文件名补全时会被忽略
+FUNCNAME 当前执行的shell函数的名称
+FUNCNEST 嵌套函数的最高层级
+GLOBIGNORE 以冒号分隔的模式列表，定义了文件名展开时要忽略的文件名集合
+GROUPS 含有当前用户属组的数组
+histchars 控制历史记录展开的字符（最多可有3个）
+HISTCMD 当前命令在历史记录中的编号
+HISTCONTROL 控制哪些命令留在历史记录列表中
+HISTFILE 保存shell历史记录列表的文件名（默认是.bash_history）
+HISTFILESIZE 保存在历史文件中的最大行数
+HISTIGNORE 以冒号分隔的模式列表，用来决定哪些命令不存进历史文件
+HISTSIZE 最多在历史文件中保存多少条命令
+HISTIMEFORMAT 设置后，决定历史文件条目的时间戳的格式字符串
+HOSTFILE 含有shell在补全主机名时读取的文件的名称
+HOSTNAME 当前主机的名称
+HOSTTYPE 当前运行bash shell的机器
+IGNOREEOF shell在退出前必须收到连续的 EOF 字符的数量。如果这个值不存在，默认是 1
+INPUTRC readline初始化文件名（默认是.inputrc）
+LANG shell的语言环境分类
+LC_ALL 定义一个语言环境分类，它会覆盖 LANG 变量
+LC_COLLATE 设置对字符串值排序时用的对照表顺序
+LC_CTYPE 决定在进行文件名扩展和模式匹配时，如何解释其中的字符
+LC_MESSAGES 决定解释前置美元符（ $ ）的双引号字符串的语言环境设置
+LC_NUMERIC 决定格式化数字时的所使用的语言环境设置
+LINENO 脚本中当前执行代码的行号
+LINES 定义了终端上可见的行数
+MACHTYPE 用“cpu  公司  系统”格式定义的系统类型
+MAILCHECK shell多久查看一次新邮件（以秒为单位，默认值是60）
+MAPFILE 含有 mapfile 命令所读入文本的数组，当没有给出变量名的时候，使用该环境变量
+OLDPWD shell之前的工作目录
+OPTERR 设置为 1 时，bash shell会显示 getopts 命令产生的错误
+OSTYPE 定义了shell运行的操作系统
+PIPESTATUS 含有前台进程退出状态码的数组
+POSIXLY_CORRECT 如果设置了该环境变量，bash会以POSIX模式启动
+PPID bash shell父进程的PID
+PROMPT_COMMAND 如果设置该环境变量，在显示命令行主提示符之前会执行这条命令
+PS1 主命令行提示符字符串
+PS2 次命令行提示符字符串
+PS3 select 命令的提示符
+PS4 如果使用了bash的 -x 选项，在命令行显示之前显示的提示符
+PWD 当前工作目录
+RANDOM 返回一个0~32 767的随机数，对其赋值可作为随机数生成器的种子
+READLINE_LINE 保存了readline行缓冲区中的内容
+READLINE_POINT 当前readline行缓冲区的插入点位置
+REPLY read 命令的默认变量
+SECONDS 自shell启动到现在的秒数，对其赋值将会重置计时器
+SHELL shell的全路径名
+SHELLOPTS 已启用bash shell选项列表，由冒号分隔
+SHLVL 表明shell层级，每次启动一个新的bash shell时计数加1
+TIMEFORMAT 指定了shell显示的时间值的格式
+TMOUT select 和 read 命令在没输入的情况下等待多久（以秒为单位）。默认值为零，表示
+无限长
+TMPDIR 如果设置成目录名，shell会将其作为临时文件目录
+UID 当前用户的真实用户ID（数字形式）
+
+
+# set 内建命令来显示这些环境变量
+
+
+# docker学习
+# 安装docker
+sudo pacman -S docker
+
+# 启动docker
+sudo systemctl start docker 
+# 查看docker服务状态
+sudo systemctl status docker
+# 开机启动
+systemctl enable docker 
+
+docker rmi hello-world # 移除镜像
+docker ps -a # 查询容器
+docker rm 6bf7c8fb514f # 移除 ID自己改
+docker image rm hello-world
+
+docker rm $(docker ps -a -q) # 删除所有的container
+docker rmi $(docker images -q) # 删除所有的images
+
+
+# docker常用镜像命令
+# 帮助命令
+docker version
+docker info
+docker 命令 --help
+
+docker images # 查看所有镜像
+	#字段说明
+	REPOSITORY  镜像仓库名称
+	TAG         镜像tag(版本)
+	IMAGE ID    镜像id
+	CREATED     镜像创建时间
+	SIZE        镜像大小
+
+docker search # 搜索指定镜像
+docker pull # 下载指定镜像 # docker pull mysql
+
+# 删除镜像
+#通过指定镜像id进行删除
+docker rmi -f 镜像id
+#删除所有镜像
+docker rmi -f $(docker images -aq)
+
+# docker常用容器命令 # 运行着的镜像才可以被叫做容器
+# 下载容器 
+docker pull centos 
+
+# 新建容器并启动
+docker run [可选参数] image
+
+#参数说明
+--name="image name"		#启动后容器的名字
+-d 						#后台方式运行
+-it						#交互方式运行，进入容器查看内容
+-p						#指定容器的端口号 
+	-p ip:主机端口:容器端口
+	-p 主机端口:容器端口(常用)
+	-p 容器端口
+-P（大写）				 #随机指定端口号
+
+# 启动并进入容器
+docker run -it centos /bin/bash 
+ls  #查看容器内centOS目录
+exit #从容器内退出
+
+# 查看运行中的容器
+docker ps -a 
+
+# 退出容器
+exit #容器停止并退出
+ctrl + P + Q #容器不停止退出
+
+# 删除容器
+docker rm 容器id #删除指定的容器，不能删除正在运行的容器，使用-f(force)参数可以强制删除正在运行的容器
+docker rm -f $(docker ps -aq) #强制删除所有容器
+docker ps -aq | xargs docker rm #利用管道符删除所有的容器
+
+# 启动和停止容器
+docker start 容器id    #启动容器
+docker restart 容器id  #重启容器
+docker stop 容器id     #停止当前正在运行的容器
+docker kill 容器id     #强制停止当前容器
+
+
+# docker常用的其他命令
+# 后台启动容器
+docker run -d 镜像名
+#问题：docker ps后，发现centOS停止了。原因：如果把docker容器作为后台服务运行，则必须有一个对应的前台进程，如果docker发现没有对应的前台进程则会自动停止当前容器
+# 查看日志
+docker logs -ft --tail num 容器名称
+# 查看容器内进程信息
+docker top e9eb73ec3c8e
+# 查看容器的元数据
+docker inspect 容器id
+# 进入容器
+docker exec -it 容器id /bin/bash #进入容器内重新开启一个新的终端，可以在里面操作(常用)
+docker attach 容器id /bin/bash #进入容器内当前正在执行的终端
+
+# 从容器内拷贝文件到主机中
+#运行centos镜像
+docker run -it centos /bin/bash
+#切换目录，创建Test.java文件
+cd home
+touch Test.java
+ls
+#退出容器
+exit
+docker ps # 查看当前运行容器
+#查看所有运行过的容器信息
+docker ps -a
+#将Test.java文件从容器内拷贝至主机上
+docker cp a47842fa991f:/home/Test.java /home
+cd home
+ls
+	
+	
+	
+	
+	
+	
+	
+	
+
