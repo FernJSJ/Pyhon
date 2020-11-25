@@ -1,0 +1,13 @@
+# cannot change locale (en_US.UTF-8)
+more /etc/sysconfig/i18n # 命令检查系统字符集
+vi /etc/sysconfig/i18n
+	# 添加如下内容：
+	LC_ALL=C
+	export LC_ALL 
+source /etc/sysconfig/i18n # 使之生效
+
+# 扩大磁盘
+vbox:管理-虚拟介质管理,扩大vdi大小
+sudo pacman -S gparted # 安装
+\VBoxManage modifymedium "位置.vdi"  --resize 61440 #改快照里的
+sudo gparted

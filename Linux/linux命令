@@ -942,6 +942,15 @@ systemctl list-unit-files | grep sshd # 查看sshd状态
 ip addr #查看本机IP
 
 
+# 深度学习
+Deepo提供了GPU和CPU版本的框架，这里使用的mac以CPU的镜像为例子，对于GPU版本的镜像需要先安装Nvidia官方的nividia-docker和相应版本的NVIDIA驱动。
+Docker：https://docs.docker.com/engine/installation/
+nvidia-docker：https://github.com/NVIDIA/nvidia-docker
+docker pull ufoym/deepo # 包含GPU版本的深度学习框架的镜像
+docker pull ufoym/deepo:cpu # cpu版
+
+
+
 
 
 
