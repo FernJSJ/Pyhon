@@ -9,7 +9,7 @@ source /etc/sysconfig/i18n # 使之生效
 # 扩大磁盘
 vbox:管理-虚拟介质管理,扩大vdi大小
 sudo pacman -S gparted # 安装
-\VBoxManage modifymedium "位置.vdi"  --resize 61440 #改快照里的
+.\VBoxManage modifymedium "位置.vdi"  --resize 61440 #改快照里的
 sudo gparted
 
 # 删除快照失败
