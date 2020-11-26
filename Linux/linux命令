@@ -951,11 +951,11 @@ nvidia-docker：https://github.com/NVIDIA/nvidia-docker
 docker pull ufoym/deepo # 包含GPU版本的深度学习框架的镜像
 docker pull ufoym/deepo:cpu # cpu版
 
-
-
-
-
-
+https://github.com/ufoym/deepo # deepo官网
+docker run --name fern_deepo -it -v /host/data:/data -v /host/config:/config ufoym/deepo:cpu bash # 文件映射
+docker run --name fern_deepo -it -p 18888:8008 -v ~/host/data:/data -v ~/host/config:/config ufoym/deepo:cpu bash # p 端口映射
+docker images -a #含中间映像层
+--ipc=host # 容器和宿主机之间完全共享内存。如果不加它则默认状态是容器和宿主机之间只共享64MB内存，这样的话训练过程中data_loader的num_workers只能设置为0，但是完全共享内存就不会有限制
 
 
 
