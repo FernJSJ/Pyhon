@@ -1,0 +1,48 @@
+---
+title: "Markdown file"
+output: word_document
+---
+
+# Assignment 2
+## **Probability distribution**
+
+Xinhai Li
+
+Group 1, ID:123456789
+
+## Data
+I measured the weight of 22 rats.
+
+```{r}
+obs = c(7,5,6,6,7,5,3,4,5,8,2,4,5,6,7,6,4,5,9,3,6,4)
+mean = mean(obs)
+SD = sd(obs)
+```
+
+```{r}
+mean
+SD
+```
+
+```{r fig.width=5,fig.height=4}
+hist(obs,freq = F)
+```
+
+**Figure 1.Histogram of rat weight**
+
+```{r fig.width=5,fig.height=4}
+x = seq(min(obs),max(obs),by=.1)
+norm = dnorm(x,mean = mean,sd = SD)
+hist(obs,freq = F)
+lines(x,norm,type = 'l',col='red')
+abline(v=c(mean-2*SD,mean+2*SD),col="brown")
+```
+
+**Figure 2.Probability distribution of the weight of rats and the 95% confident interval**
+
+## Result
+The 95% confident interval of the rat weight is:
+```{r}
+c(qnorm(.025,mean,SD),qnorm(.975,mean,SD))
+```
+
