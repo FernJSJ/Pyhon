@@ -11,3 +11,9 @@ vbox:管理-虚拟介质管理,扩大vdi大小
 sudo pacman -S gparted # 安装
 \VBoxManage modifymedium "位置.vdi"  --resize 61440 #改快照里的
 sudo gparted
+
+# 删除快照失败
+"Hard disk has more than one child hard disk (2)"
+# 网站答案
+	Use Virtual Media Manager (from the VB menu), find your base disk and expand the tree under and find the differencing disk ({hexUUID}.vdi file) you are trying to delete. The extra child disk will likely be one of two under that disk. Select it and note the information displayed at the bottom: 'Attached to:' : it will say Not Attached for the problem file. Click Remove to delete it.
+# 操作:虚拟介质管理,选定虚拟机,选中删除的快照,将子目录的快照删除,将带有感叹号的快照删除即可
