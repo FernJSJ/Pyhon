@@ -4,7 +4,7 @@ git add .
 git commit -m "jupyter notebook"
 git push origin
 git checkout master # 切换分支
-git checkout master # 强制上传
+git push origin master -f # 强制上传
 
 # 安装R语言
 sudo pacman -S base-devel 
