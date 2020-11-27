@@ -14,7 +14,7 @@ npm install -g gitbook-cli
 gitbook init
 
 
-
+# 软件安装网站 https://www.jianshu.com/p/ae6c2b34ea3e
 # 安装WPS
 sudo pacman -S wps-office
 sudo pacman -S ttf-wps-fonts
@@ -42,7 +42,19 @@ sudo pacman -Rs package_name
 # 搜索
 sudo pacman -S yaourt
 
+# 输入法配置
+vi ~/.xprofile 添加
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=”@im=fcitx”
 
+ ~.bashrc或.profile中添加环境变量
+sudo vim ~/.bashrc
+export XMODIFIERS="@im=fcitx"
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+
+source ~/.bashrc 生效
 
 
 
