@@ -1,0 +1,8 @@
+# gitbook配置
+sudo pacman -S make
+./configure # 检测编译
+make # 生成用于编译的MakeFile文件
+make install # 安装
+make clean
+make distclean # 清除编译过程中产生的临时文件和配置过程中产生的文件
+make uninstall # 卸载
