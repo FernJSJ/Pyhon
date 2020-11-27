@@ -1,4 +1,4 @@
-# gitbook配置
+# 安装tar.gz文件
 sudo pacman -S make
 ./configure # 检测编译
 make # 生成用于编译的MakeFile文件
@@ -6,3 +6,48 @@ make install # 安装
 make clean
 make distclean # 清除编译过程中产生的临时文件和配置过程中产生的文件
 make uninstall # 卸载
+
+# gitbook配置
+# 网址 https://blog.csdn.net/lu_embedded/article/details/81100704
+安装 Node.js（下载地址：https://nodejs.org/en/download/）
+npm install -g gitbook-cli
+gitbook init
+
+
+
+# 安装WPS
+sudo pacman -S wps-office
+sudo pacman -S ttf-wps-fonts
+解决无法输入中文问题：
+/usr/bin/wps
+/usr/bin/wpp
+/usr/bin/et
+中最前面添加：
+export XMODIFIERS="@im=fcitx"
+export GTK_IM_MODULE="fcitx"
+export QT_IM_MODULE="fcitx"
+
+# Typora 
+yaourt typora
+
+# 安装
+sudo pacman -S package_name
+
+# 卸载
+sudo pacman -R package_name
+
+# 卸载软件＋不需要的依赖
+sudo pacman -Rs package_name
+
+# 搜索
+sudo pacman -S yaourt
+
+
+
+
+
+
+
+
+
+
