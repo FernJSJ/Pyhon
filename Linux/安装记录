@@ -9,7 +9,14 @@ make uninstall # 卸载
 
 # gitbook配置
 # 网址 https://blog.csdn.net/lu_embedded/article/details/81100704
+https://www.cnblogs.com/mingyue5826/p/10757388.html
+https://www.cnblogs.com/mingyue5826/p/10757714.html
+
 安装 Node.js（下载地址：https://nodejs.org/en/download/）
+建立软连接，变为全局
+ln -s /usr/local/nodejs/bin/npm /usr/local/bin/
+ln -s /usr/local/nodejs/bin/node /usr/local/bin/
+
 npm install -g gitbook-cli
 gitbook init
 
