@@ -31,6 +31,12 @@ gitbook serve
 	http://localhost:4000
 gitbook install ./ # 配置book.json
 gitbook build # 打包为静态文件
+网页上设置gitbook同步到git仓库
+# git同步
+网址 https://segmentfault.com/a/1190000011168654
+git init
+git remote add origin https://github.com/FernJSJ/Gitbook.git
+git push origin master -f
 
 	
 # 软件安装网站 https://www.jianshu.com/p/ae6c2b34ea3e
