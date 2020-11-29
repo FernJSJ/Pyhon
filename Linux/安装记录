@@ -81,7 +81,8 @@ export QT_IM_MODULE=fcitx
 
 source ~/.bashrc 生效
 
-
+# 日语输入法
+sudo pacman -S fcitx-mozc # 开源版谷歌日语输入法
 
 
 
