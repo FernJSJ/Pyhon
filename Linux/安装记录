@@ -38,6 +38,12 @@ git init
 git remote add origin https://github.com/FernJSJ/Gitbook.git
 git push origin master -f
 
+# docsify
+npm i docsify-cli -g
+sudo ln -s /home/fern/Downloads/node-v10.21.0-linux-x64/bin/docsify /usr/local/bin/docsify
+docsify init docs
+docsify serve docs
+	http://localhost:3000
 	
 # 软件安装网站 https://www.jianshu.com/p/ae6c2b34ea3e
 # 安装WPS
