@@ -49,6 +49,8 @@ docsify serve docs
 sudo pacman -S texlive-most texlive-lang
 sudo pacman -S texlive-langchinese
 tex -v
+latex -v
+xelatex -v
 sudo pacman -S texmaker texsudio
 	
 # 软件安装网站 https://www.jianshu.com/p/ae6c2b34ea3e
