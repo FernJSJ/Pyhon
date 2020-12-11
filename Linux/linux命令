@@ -6,6 +6,9 @@ git pull origin master # 远程同步到本地
 git push origin
 git checkout master # 切换分支
 git push origin master -f # 强制上传
+# 放弃本地修改,强制覆盖
+git reset --hard
+git pull
 
 # 安装R语言
 sudo pacman -S base-devel 
