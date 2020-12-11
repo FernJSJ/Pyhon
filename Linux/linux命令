@@ -962,6 +962,20 @@ docker images -a #含中间映像层
 # 本机配置
 docker run -it --ipc=host --name fern_deepo  -v ~/host/data:/data -v ~/host/config:/config ufoym/deepo:cpu bash
 
+# docker push到私有仓库
+	1、登录
+	docker login http://xxxxx.com
+	2、登录私有hub创建项目
+	例如项目叫：abc-dev
+	3、给镜像打tag
+	docker tag 2e25d8496557 xxxxx.com/abc-dev/arc:1334
+		2e25d8496557：IMAGE ID，可以用docker images 查看
+		xxxxx.com：私有hub域名
+		abc-dev：项目名称
+		arc：镜像名称
+		1334：镜像版本号
+	4、推送
+	docker push xxxxx.com/abc-dev/arc:1334
 
 
 
