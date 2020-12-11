@@ -977,8 +977,9 @@ docker run -it --ipc=host --name fern_deepo  -v ~/host/data:/data -v ~/host/conf
 	4、推送
 	docker push xxxxx.com/abc-dev/arc:1334
 
-
-
+# Docker commands
+To push a new tag to this repository,
+	docker push fernjsj/manjaro:tagname
 
 
 
