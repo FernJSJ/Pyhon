@@ -983,6 +983,33 @@ docker run -it --ipc=host --name fern_deepo  -v ~/host/data:/data -v ~/host/conf
 # Docker commands
 To push a new tag to this repository,
 	docker push fernjsj/manjaro:tagname
+	
+# docker推送至仓库
+	https://www.jianshu.com/p/1cd5ec416890
+	前提条件 docker 环境安装好
+	docker run -d -p 5000:5000 --restart=always --name registry2 registry:2
+
+	让 docker支持 HTTP :XX是IP地址
+	echo '{ "insecure-registries":["XX.XX.XX.XX:5000"] }' > /etc/docker/daemon.json
+
+	修改镜像标签 将原本镜像 前面加个地址
+	docker tag macro/eureka-server:0.0.1 192.168.X.X:5000/macro/eureka-server:0.0.1
+
+	推送到私有仓库
+	docker push 192.168.X.X:5000/macro/eureka-server:0.0.1
+
+	上传 docker镜像到公库
+	科学上网 注册账号
+	官网地址：https://hub.docker.com
+
+	docker登录
+	docker login
+	输入帐号密码
+	修改镜像标签
+	docker tag centos:6 syavingc/centos:6
+
+	上传镜像
+	docker push syavingc/centos:6
 
 
 
