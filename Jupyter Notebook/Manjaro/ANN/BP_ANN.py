@@ -137,3 +137,58 @@ prediction_train = net(x_train)
 prediction_test = net(x_test)
 pred_train = prediction_train.data.numpy()
 pred_train
+
+from visdom import Visdom
+import numpy as np  
+viz = Visdom(env='my_wind')
+x, y =0, 0
+win = viz.line(
+    X = np.array([x]),
+    Y = np.array([y]),
+    opts=dict(title='Loss function')
+)
+
+
+for i in range(1000):
+    prediction_train = net(x_train)
+    prediction_train = prediction_train.to(torch.float32)
+    loss_train = loss_func(prediction_train, y_train)
+    
+    prediction_test = net(x_test)
+    prediction_test = prediction_test.to(torch.float32)
+    loss_train = loss_func(prediction_test, y_test)
+    
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+    if i % 5 == 0:
+        print('Epoch %d, Training loss %.4f, Varidation loss %.4f' % (i, float(loss_train), float(loss_test))
+    
+prediction_train = net(x_train)
+prediction_test = net(x_test)
+pred_train = prediction_train.data.numpy()
+pred_train
+
+for  i in range(10000):
+    Loss_train_list = []
+    Loss_test_list = []
+    
+    prediction_train = net(x_train)
+    prediction_train = prediction_train.to(torch.float32)
+    loss_train = loss_func(prediction_train, y_train)
+    
+    prediction_test = net(x_test)
+    prediction_test = prediction_test.to(torch.float32)
+    loss_test = loss_func(prediction_test, y_test)
+    
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+
+    Loss_train_list += loss_train
+    Loss_test_list += loss_test
+
+    X = np.array
+
+
+
