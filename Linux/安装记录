@@ -130,3 +130,8 @@ Terminal	是否使用终端
 Type	启动器类型
 Categories	应用的类型（内容相关）
 
+# manjaro更新失败
+sudo pacman -Scc # 清理缓存
+sudo pacman -Syu # 更新源
+sudo pacman -Syudd # 跳过所有检测
+
